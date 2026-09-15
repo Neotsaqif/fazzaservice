@@ -4,9 +4,9 @@ import { SITE_CONFIG, getWhatsAppLink } from "../config/site";
 
 export const HowToOrder: React.FC = () => {
   const stepIcons = [
-    <MessageCircle className="w-6 h-6 text-accent" key="1" />,
-    <CalendarCheck className="w-6 h-6 text-accent" key="2" />,
-    <Home className="w-6 h-6 text-accent" key="3" />,
+    <MessageCircle className="w-5 h-5 text-accent" key="1" />,
+    <CalendarCheck className="w-5 h-5 text-accent" key="2" />,
+    <Home className="w-5 h-5 text-accent" key="3" />,
   ];
 
   return (
@@ -29,28 +29,38 @@ export const HowToOrder: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {/* Single card with all 3 steps as a vertical list */}
+        <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 max-w-3xl mx-auto divide-y divide-border relative z-10">
           {SITE_CONFIG.orderSteps.map((step, index) => (
             <div
               key={step.step}
-              className="bg-card border border-border rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center relative z-10"
+              className={`flex items-start gap-4 sm:gap-5 ${
+                index === 0
+                  ? "pb-6 sm:pb-8"
+                  : index === SITE_CONFIG.orderSteps.length - 1
+                    ? "pt-6 sm:pt-8"
+                    : "py-6 sm:py-8"
+              }`}
             >
-              {/* Step Badge */}
-              <div className="w-10 h-10 rounded-full bg-sky-100 text-accent font-heading font-bold text-base flex items-center justify-center mb-6 border border-sky-200">
+              {/* Numbered badge */}
+              <div className="w-10 h-10 shrink-0 rounded-full bg-sky-100 text-accent font-heading font-bold text-base flex items-center justify-center border border-sky-200">
                 {step.step}
               </div>
 
               {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center mb-4">
+              <div className="w-10 h-10 shrink-0 rounded-xl bg-sky-50 flex items-center justify-center">
                 {stepIcons[index]}
               </div>
 
-              <h3 className="font-heading font-semibold text-foreground text-lg mb-2">
-                {step.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {step.description}
-              </p>
+              {/* Text */}
+              <div className="flex-1 min-w-0">
+                <h3 className="font-heading font-semibold text-foreground text-lg mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

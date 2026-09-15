@@ -44,23 +44,23 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Trust highlights */}
-            <div className="mt-10 w-full max-w-2xl rounded-full border border-white/80 bg-white/85 py-3.5 px-6 shadow-lg shadow-slate-900/5 backdrop-blur-sm">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="flex items-center justify-center gap-2.5">
-                  <Clock className="w-5 h-5 text-accent shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium text-foreground">
+            <div className="mt-8 w-full max-w-sm sm:max-w-2xl rounded-2xl sm:rounded-full border border-white/80 bg-white/85 py-3 px-3.5 sm:py-3.5 sm:px-6 shadow-lg shadow-slate-900/5 backdrop-blur-sm">
+              <div className="flex flex-col sm:grid sm:grid-cols-3 gap-2.5 sm:gap-4">
+                <div className="flex items-center justify-center gap-2 sm:gap-2.5">
+                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" />
+                  <span className="text-[11px] sm:text-sm font-medium text-foreground">
                     Respon Cepat
                   </span>
                 </div>
-                <div className="flex items-center justify-center gap-2.5">
-                  <ShieldCheck className="w-5 h-5 text-accent shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium text-foreground">
+                <div className="flex items-center justify-center gap-2 sm:gap-2.5">
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" />
+                  <span className="text-[11px] sm:text-sm font-medium text-foreground">
                     Ada Garansi
                   </span>
                 </div>
-                <div className="flex items-center justify-center gap-2.5">
-                  <Award className="w-5 h-5 text-accent shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium text-foreground">
+                <div className="flex items-center justify-center gap-2 sm:gap-2.5">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0" />
+                  <span className="text-[11px] sm:text-sm font-medium text-foreground">
                     Pengerjaan Rapi
                   </span>
                 </div>
