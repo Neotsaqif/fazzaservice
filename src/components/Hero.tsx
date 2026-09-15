@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
           alt="Service AC Purwokerto Background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-white/60 sm:bg-white/45 bg-gradient-to-r from-white/80 via-white/70 to-white/30" />
+        <div className="absolute inset-0 bg-white/45 sm:bg-white/30 bg-gradient-to-r from-white/70 via-white/60 to-white/15" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,24 +57,26 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Trust highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 mt-10 border-t border-border/70 w-full max-w-2xl">
-              <div className="flex items-center justify-center gap-2.5">
-                <Clock className="w-5 h-5 text-accent shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  Respon Cepat
-                </span>
-              </div>
-              <div className="flex items-center justify-center gap-2.5">
-                <ShieldCheck className="w-5 h-5 text-accent shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  Ada Garansi
-                </span>
-              </div>
-              <div className="flex items-center justify-center gap-2.5">
-                <Award className="w-5 h-5 text-accent shrink-0" />
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  Pengerjaan Rapi
-                </span>
+            <div className="mt-10 w-full max-w-2xl rounded-full border border-white/80 bg-white/85 py-3.5 px-6 shadow-lg shadow-slate-900/5 backdrop-blur-sm">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="flex items-center justify-center gap-2.5">
+                  <Clock className="w-5 h-5 text-accent shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-foreground">
+                    Respon Cepat
+                  </span>
+                </div>
+                <div className="flex items-center justify-center gap-2.5">
+                  <ShieldCheck className="w-5 h-5 text-accent shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-foreground">
+                    Ada Garansi
+                  </span>
+                </div>
+                <div className="flex items-center justify-center gap-2.5">
+                  <Award className="w-5 h-5 text-accent shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-foreground">
+                    Pengerjaan Rapi
+                  </span>
+                </div>
               </div>
             </div>
           </div>
