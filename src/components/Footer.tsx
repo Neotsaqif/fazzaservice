@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
             <div className="pt-2">
               <a
                 href={getWhatsAppLink(
-                  "Halo Pak Tri, saya ingin konsultasi mengenai service AC.",
+                  "Halo fazzaservice, saya ingin bertanya tentang layanan AC.",
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
