@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Comfortaa", system-ui, -apple-system, sans-serif;
+  --font-heading: "Comfortaa", system-ui, -apple-system, sans-serif;
+
+  --color-background: #ffffff;
+  --color-muted: #fafbfc;
+  --color-card: #ffffff;
+  --color-border: #e5e9ec;
+  --color-foreground: #232b33;
+  --color-muted-foreground: #64748b;
+  --color-accent: #5bafd9;
+  --color-on-accent: #0f172a;
+  --color-cta-wa: #25d366;
+  --color-cta-wa-hover: #1ebe5a;
+  --color-destructive: #dc2626;
+}
+
+:root {
+  --color-background: #ffffff;
+  --color-muted: #fafbfc;
+  --color-card: #ffffff;
+  --color-border: #e5e9ec;
+  --color-foreground: #232b33;
+  --color-muted-foreground: #64748b;
+  --color-accent: #5bafd9;
+  --color-on-accent: #0f172a;
+  --color-cta-wa: #25d366;
+  --color-cta-wa-hover: #1ebe5a;
+  --color-destructive: #dc2626;
+}
+
+html {
+  scroll-behavior: smooth;
+  zoom: 75%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  /* Extra space at bottom so floating WA button doesn't block content */
+  padding-bottom: 5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+/* Accessible focus styling */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #5bafd9;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
