@@ -1,14 +1,14 @@
-import React from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AreaLayanan } from './components/AreaLayanan';
-import { ServiceCatalog } from './components/ServiceCatalog';
-import { WhyUs } from './components/WhyUs';
-import { HowToOrder } from './components/HowToOrder';
-import { FAQ } from './components/FAQ';
-import { ClosingCTA } from './components/ClosingCTA';
-import { Footer } from './components/Footer';
-import { FloatingWA } from './components/FloatingWA';
+import React from "react";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
+import { AreaLayanan } from "./components/AreaLayanan";
+import { ServiceCatalog } from "./components/ServiceCatalog";
+import { WhyUs } from "./components/WhyUs";
+import { HowToOrder } from "./components/HowToOrder";
+import { FAQ } from "./components/FAQ";
+import { ClosingCTA } from "./components/ClosingCTA";
+import { Footer } from "./components/Footer";
+import { FloatingWA } from "./components/FloatingWA";
 
 export function App() {
   return (
