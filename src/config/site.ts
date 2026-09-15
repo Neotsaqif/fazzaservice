@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   description:
     "Layanan service, cuci, isi freon, dan bongkar pasang AC profesional, terpercaya, dan bergaransi untuk area Purwokerto, Banyumas, Purbalingga, Cilacap, dan Banjarnegara.",
   owner: "Pak Tri",
-  whatsappNumber: "6281234567890", // Placeholder nomor Pak Tri — mudah diganti di satu tempat
+  whatsappNumber: "6281992071526", // Nomor WhatsApp
   defaultMessage:
     "Halo fazzaservice, saya ingin bertanya dan memesan layanan service AC.",
   areas: ["Purwokerto", "Banyumas", "Purbalingga", "Cilacap", "Banjarnegara"],
