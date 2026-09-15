@@ -24,7 +24,7 @@ export const ServiceCatalog: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const directionRef = useRef<number>(1); // 1 = right, -1 = left
   const isPausedRef = useRef<boolean>(false);
-  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
 
   useEffect(() => {

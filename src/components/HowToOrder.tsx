@@ -1,16 +1,19 @@
-import React from 'react';
-import { MessageCircle, CalendarCheck, Home } from 'lucide-react';
-import { SITE_CONFIG, getWhatsAppLink } from '../config/site';
+import React from "react";
+import { MessageCircle, CalendarCheck, Home } from "lucide-react";
+import { SITE_CONFIG, getWhatsAppLink } from "../config/site";
 
 export const HowToOrder: React.FC = () => {
   const stepIcons = [
     <MessageCircle className="w-6 h-6 text-accent" key="1" />,
     <CalendarCheck className="w-6 h-6 text-accent" key="2" />,
-    <Home className="w-6 h-6 text-accent" key="3" />
+    <Home className="w-6 h-6 text-accent" key="3" />,
   ];
 
   return (
-    <section id="cara-pesan" className="py-16 sm:py-24 bg-background border-b border-border">
+    <section
+      id="cara-pesan"
+      className="py-16 sm:py-24 bg-background border-b border-border"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent mb-2 block">
@@ -21,7 +24,8 @@ export const HowToOrder: React.FC = () => {
           </h2>
 
           <p className="text-base text-muted-foreground">
-            Tanpa perlu install aplikasi atau registrasi. Cukup dengan WhatsApp, teknisi kami siap meluncur.
+            Tanpa perlu install aplikasi atau registrasi. Cukup dengan WhatsApp,
+            teknisi kami siap meluncur.
           </p>
         </div>
 
@@ -54,13 +58,14 @@ export const HowToOrder: React.FC = () => {
         {/* CTA Banner */}
         <div className="mt-12 text-center">
           <a
-            href={getWhatsAppLink('Halo fazzaservice, saya ingin memesan service AC sekarang.')}
+            href={getWhatsAppLink(
+              "Halo fazzaservice, saya ingin memesan service AC sekarang.",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold text-white bg-[var(--color-cta-wa)] hover:bg-[var(--color-cta-wa-hover)] shadow-md transition-all transform hover:scale-[1.02]"
-            style={{ minHeight: '48px' }}
+            style={{ minHeight: "48px" }}
           >
-            <MessageCircle className="w-5 h-5 fill-white" />
             <span>Pesan Sekarang via WhatsApp</span>
           </a>
         </div>

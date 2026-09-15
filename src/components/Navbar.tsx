@@ -48,7 +48,6 @@ export const Navbar: React.FC = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-[var(--color-cta-wa)] hover:bg-[var(--color-cta-wa-hover)] shadow-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]"
             style={{ minHeight: "44px", minWidth: "44px" }}
           >
-            <MessageCircle className="w-4 h-4 fill-white" />
             <span>Chat via WhatsApp</span>
           </a>
         </div>
@@ -88,7 +87,6 @@ export const Navbar: React.FC = () => {
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-white bg-[var(--color-cta-wa)] hover:bg-[var(--color-cta-wa-hover)] shadow-sm"
                 style={{ minHeight: "48px" }}
               >
-                <MessageCircle className="w-5 h-5 fill-white" />
                 <span>Chat via WhatsApp</span>
               </a>
             </div>

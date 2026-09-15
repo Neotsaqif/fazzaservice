@@ -43,7 +43,6 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base sm:text-lg font-bold text-white bg-[var(--color-cta-wa)] hover:bg-[var(--color-cta-wa-hover)] shadow-lg shadow-green-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center"
                 style={{ minHeight: "52px", minWidth: "44px" }}
               >
-                <MessageCircle className="w-6 h-6 fill-white" />
                 <span>Chat via WhatsApp</span>
               </a>
 
