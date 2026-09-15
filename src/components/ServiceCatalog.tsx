@@ -14,6 +14,7 @@ interface ServiceItem {
   id: string;
   title: string;
   description: string;
+  prices?: { label: string; price: string }[];
   iconName: string;
 }
 
@@ -174,18 +175,35 @@ export const ServiceCatalog: React.FC = () => {
               key={`${service.id}-${index}`}
               className="w-[280px] sm:w-[320px] lg:w-[360px] shrink-0 rounded-2xl p-4 sm:p-6 flex flex-col justify-between transition-all group bg-card border border-border hover:border-sky-300 hover:shadow-md"
             >
-              <div>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors bg-sky-50 border border-sky-100 group-hover:bg-sky-100">
-                  {iconMap[service.iconName] || (
-                    <Wrench className="w-6 h-6 text-accent" />
-                  )}
+              <div className="flex flex-col h-full">
+                <div>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors bg-sky-50 border border-sky-100 group-hover:bg-sky-100">
+                    {iconMap[service.iconName] || (
+                      <Wrench className="w-6 h-6 text-accent" />
+                    )}
+                  </div>
+                  <h3 className="font-heading font-semibold text-base sm:text-lg mb-2 text-foreground group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="font-heading font-semibold text-base sm:text-lg mb-2 text-foreground group-hover:text-accent transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
+                {service.prices && service.prices.length > 0 && (
+                  <div className="space-y-1 pt-2 border-t border-border/60 mt-auto">
+                    {service.prices.map((p, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between items-center text-xs sm:text-sm font-medium"
+                      >
+                        <span className="text-muted-foreground">{p.label}</span>
+                        <span className="text-accent font-semibold">
+                          {p.price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
