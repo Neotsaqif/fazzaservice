@@ -1,18 +1,72 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { MessageCircle, ShieldCheck, Clock, Award } from "lucide-react";
 import { SITE_CONFIG, getWhatsAppLink } from "../config/site";
 
+const WALLPAPER_IMAGES = [
+  "/wallpaper/WhatsApp Image 2026-09-14 at 16.46.53.jpeg",
+  "/wallpaper/WhatsApp Image 2026-09-14 at 16.42.04.jpeg",
+  "/wallpaper/WhatsApp Image 2026-09-14 at 16.42.02.jpeg",
+  "/wallpaper/WhatsApp Image 2026-09-14 at 16.40.55.jpeg",
+];
+
 export const Hero: React.FC = () => {
+  const duplicatedWallpapers = [
+    ...WALLPAPER_IMAGES,
+    ...WALLPAPER_IMAGES,
+    ...WALLPAPER_IMAGES,
+    ...WALLPAPER_IMAGES,
+  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lastTimestampRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const speed = 70; // Increased speed
+
+    const step = (timestamp: number) => {
+      if (!lastTimestampRef.current) lastTimestampRef.current = timestamp;
+      const delta = (timestamp - lastTimestampRef.current) / 1000;
+      lastTimestampRef.current = timestamp;
+
+      container.scrollLeft += speed * delta;
+
+      const singleSetWidth = container.scrollWidth / 4;
+      if (container.scrollLeft >= singleSetWidth * 2) {
+        container.scrollLeft -= singleSetWidth;
+      }
+
+      requestAnimationFrame(step);
+    };
+
+    const animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-8 pb-16 md:py-24 bg-background border-b border-border">
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/hero-bg.jpg"
-          alt="Service AC Purwokerto Background"
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-white/45 sm:bg-white/30 bg-gradient-to-r from-white/70 via-white/60 to-white/15" />
+      {/* Background Sliding Wallpaper Strip & Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div
+          ref={containerRef}
+          className="no-scrollbar flex h-full overflow-hidden"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {duplicatedWallpapers.map((img, index) => (
+            <div
+              key={`${img}-${index}`}
+              className="h-full w-[80vw] sm:w-[600px] lg:w-[800px] shrink-0"
+            >
+              <img
+                src={img}
+                alt={`Service AC Purwokerto Wallpaper ${index + 1}`}
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-white/50 sm:bg-white/35 bg-gradient-to-r from-white/75 via-white/65 to-white/20 z-10 pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
