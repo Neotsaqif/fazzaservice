@@ -35,18 +35,6 @@ export const Hero: React.FC = () => {
             {/* Primary CTA */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <a
-                href={getWhatsAppLink(
-                  "Halo fazzaservice, saya ingin bertanya dan konsultasi mengenai service AC.",
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base sm:text-lg font-bold text-white bg-[var(--color-cta-wa)] hover:bg-[var(--color-cta-wa-hover)] shadow-lg shadow-green-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center"
-                style={{ minHeight: "52px", minWidth: "44px" }}
-              >
-                <span>Chat via WhatsApp</span>
-              </a>
-
-              <a
                 href="#layanan"
                 className="inline-flex items-center justify-center px-6 py-4 rounded-full text-sm sm:text-base font-semibold text-foreground bg-muted hover:bg-slate-100 border border-border transition-colors text-center"
                 style={{ minHeight: "52px", minWidth: "44px" }}

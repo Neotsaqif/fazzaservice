@@ -1,13 +1,32 @@
-import React from "react";
-import { MessageCircle } from "lucide-react";
+import React, { useState } from "react";
+import { MessageCircle, X } from "lucide-react";
 import { getWhatsAppLink } from "../config/site";
 
 export const FloatingWA: React.FC = () => {
+  const [showBubble, setShowBubble] = useState(true);
+
   return (
     <aside
       aria-label="WhatsApp Floating Button"
-      className="fixed bottom-6 right-6 z-50"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3"
     >
+      {/* Speech Bubble */}
+      {showBubble && (
+        <div className="relative flex items-center bg-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none shadow-[0_0_15px_5px_rgba(0,0,0,0.15)] px-4 py-3 max-w-[220px] animate-bounce">
+          <p className="text-sm font-medium text-gray-800 leading-snug pr-2">
+            Chat Admin/CS, kami siap bantu!
+          </p>
+          <button
+            onClick={() => setShowBubble(false)}
+            className="flex-shrink-0 p-1 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Tutup"
+          >
+            <X className="w-4 h-4 text-gray-500" />
+          </button>
+        </div>
+      )}
+
+      {/* WhatsApp Button */}
       <a
         href={getWhatsAppLink(
           "Halo fazzaservice, saya ingin bertanya tentang layanan AC.",
