@@ -64,6 +64,28 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Marquee Carousel Animation */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 35s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee:active,
+.animate-marquee:focus-within {
+  animation-play-state: paused;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   html {
