@@ -64,6 +64,15 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Hide scrollbar utility for ping-pong carousel */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 /* Marquee Carousel Animation */
 @keyframes scrollMarquee {
   0% {

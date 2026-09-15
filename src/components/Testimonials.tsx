@@ -1,6 +1,6 @@
-import React from 'react';
-import { Star, User } from 'lucide-react';
-import { SITE_CONFIG } from '../config/site';
+import React from "react";
+import { Star, User } from "lucide-react";
+import { SITE_CONFIG } from "../config/site";
 
 export const Testimonials: React.FC = () => {
   return (
@@ -13,10 +13,6 @@ export const Testimonials: React.FC = () => {
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
             Apa Kata Mereka tentang fazzaservice
           </h2>
-
-          <p className="text-xs text-muted-foreground italic">
-            [PLACEHOLDER: Contoh testimoni pelanggan]
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
