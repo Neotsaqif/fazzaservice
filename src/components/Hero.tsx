@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
       style={{ height: "675px" }}
     >
       {/* Background Sliding Wallpaper Strip & Overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden max-w-[1920px] mx-auto w-full">
         <div
           ref={containerRef}
           className="no-scrollbar flex h-full overflow-hidden"
