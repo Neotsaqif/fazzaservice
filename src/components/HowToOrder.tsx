@@ -49,7 +49,7 @@ export const HowToOrder: React.FC = () => {
           {SITE_CONFIG.orderSteps.map((step, index) => (
             <div
               key={step.step}
-              className={`flex items-start gap-4 sm:gap-5 ${
+              className={`flex items-center sm:items-start gap-4 sm:gap-5 ${
                 index === 0
                   ? "pb-6 sm:pb-8"
                   : index === SITE_CONFIG.orderSteps.length - 1
