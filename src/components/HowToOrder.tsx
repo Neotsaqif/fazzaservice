@@ -60,7 +60,9 @@ export const HowToOrder: React.FC = () => {
               {/* Numbered badge */}
               <div
                 className={`w-10 h-10 shrink-0 rounded-full bg-sky-100 text-accent font-heading font-bold text-base flex items-center justify-center border border-sky-200 transition-opacity duration-300 ${
-                  activeStep === step.step ? "animate-pulse ring-4 ring-sky-300 opacity-75" : ""
+                  activeStep === step.step
+                    ? "animate-pulse ring-4 ring-sky-300 opacity-75"
+                    : ""
                 }`}
               >
                 {step.step}

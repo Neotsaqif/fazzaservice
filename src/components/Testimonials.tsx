@@ -67,7 +67,11 @@ export const Testimonials: React.FC = () => {
           onTouchStart={(e) => e.preventDefault()}
           onMouseDown={(e) => e.preventDefault()}
           className="no-scrollbar overflow-x-hidden flex gap-6 px-4 sm:px-6 select-none"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none", touchAction: "none" }}
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            touchAction: "none",
+          }}
         >
           {duplicatedTestimonials.map((item, index) => (
             <div
