@@ -45,7 +45,10 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 md:py-24 bg-background border-b border-border">
+    <section
+      className="relative overflow-hidden bg-background border-b border-border flex items-center justify-center"
+      style={{ height: "675px" }}
+    >
       {/* Background Sliding Wallpaper Strip & Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div
