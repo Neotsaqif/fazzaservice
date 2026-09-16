@@ -126,27 +126,46 @@ export const SITE_CONFIG = {
   testimonials: [
     {
       id: 1,
-      name: "Pak Budi",
+      name: "Sena Perkasa",
       location: "Purwokerto",
       rating: 5,
-      comment:
-        "Pelayanan cepat dan rapi. AC rumah yang tadinya kurang dingin sekarang sejuk lagi. Rekomendasi banget!",
+      comment: "Bagus, kerja cepet, hasil memuaskan.",
     },
     {
       id: 2,
-      name: "Ibu Ratna",
-      location: "Purbalingga",
+      name: "Mamas Dafa",
+      location: "Purwokerto",
       rating: 5,
       comment:
-        "Teknisi ramah dan komunikatif. Estimasi biayanya jelas sebelum pengerjaan. Sangat puas!",
+        "Mantap.... konsumen nomer satu. Luar biasa. Semoga lancar, barokah, langgeng, maju dan sukses terus.",
     },
     {
       id: 3,
-      name: "Mas Herman",
-      location: "Banyumas",
+      name: "Nice Brother",
+      location: "Purwokerto",
       rating: 5,
-      comment:
-        "Bongkar pasang AC di kantor dilakukan dengan sangat bersih dan teliti. Garansinya bikin tenang.",
+      comment: "Good jobs bos, bisa dech buat langganan.",
+    },
+    {
+      id: 4,
+      name: "Arkan Perdana",
+      location: "Purwokerto",
+      rating: 5,
+      comment: "Respon cepat, pelayanan juga mantab.",
+    },
+    {
+      id: 5,
+      name: "AG Teknik",
+      location: "Purwokerto",
+      rating: 5,
+      comment: "Sangat puas.",
+    },
+    {
+      id: 6,
+      name: "Laeli Dwi",
+      location: "Purwokerto",
+      rating: 5,
+      comment: "Pelayanannya lumayan.",
     },
   ],
   faqs: [

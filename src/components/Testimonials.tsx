@@ -3,8 +3,15 @@ import { Star, User } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
 
 export const Testimonials: React.FC = () => {
+  const testimonials = SITE_CONFIG.testimonials;
+  const duplicatedTestimonials = [
+    ...testimonials,
+    ...testimonials,
+    ...testimonials,
+    ...testimonials,
+  ];
+
   const containerRef = useRef<HTMLDivElement>(null);
-  const directionRef = useRef<number>(1); // 1 = right, -1 = left
   const isPausedRef = useRef<boolean>(false);
   const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -13,7 +20,7 @@ export const Testimonials: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const speed = 35; // pixels per second
+    const speed = 40; // pixels per second
 
     const step = (timestamp: number) => {
       if (!lastTimestampRef.current) lastTimestampRef.current = timestamp;
@@ -21,15 +28,11 @@ export const Testimonials: React.FC = () => {
       lastTimestampRef.current = timestamp;
 
       if (!isPausedRef.current) {
-        container.scrollLeft += directionRef.current * speed * delta;
+        container.scrollLeft += speed * delta;
 
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        if (container.scrollLeft <= 0) {
-          container.scrollLeft = 0;
-          directionRef.current = 1;
-        } else if (container.scrollLeft >= maxScroll) {
-          container.scrollLeft = maxScroll;
-          directionRef.current = -1;
+        const singleSetWidth = container.scrollWidth / 4;
+        if (container.scrollLeft >= singleSetWidth * 2) {
+          container.scrollLeft -= singleSetWidth;
         }
       }
 
@@ -80,6 +83,18 @@ export const Testimonials: React.FC = () => {
     window.addEventListener("mousemove", handlePointerMove as EventListener);
     window.addEventListener("mouseup", handlePointerUp);
 
+    container.addEventListener(
+      "touchstart",
+      handlePointerDown as EventListener,
+      { passive: true },
+    );
+    container.addEventListener(
+      "touchmove",
+      handlePointerMove as EventListener,
+      { passive: true },
+    );
+    container.addEventListener("touchend", handlePointerUp);
+
     return () => {
       cancelAnimationFrame(animId);
       if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
@@ -93,32 +108,48 @@ export const Testimonials: React.FC = () => {
         handlePointerMove as EventListener,
       );
       window.removeEventListener("mouseup", handlePointerUp);
+
+      container.removeEventListener(
+        "touchstart",
+        handlePointerDown as EventListener,
+      );
+      container.removeEventListener(
+        "touchmove",
+        handlePointerMove as EventListener,
+      );
+      container.removeEventListener("touchend", handlePointerUp);
     };
   }, []);
 
   return (
-    <section
-      id="testimoni"
-      className="py-16 sm:py-24 bg-muted border-b border-border overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+    <section id="testimoni" className="py-16 sm:py-24 bg-muted overflow-hidden">
+      {/* Header - constrained container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto">
           <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent mb-2 block">
             Testimoni Pelanggan
           </span>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             Apa Kata Mereka tentang fazzaservice
           </h2>
         </div>
+      </div>
+
+      {/* Carousel - full width with border */}
+      <div className="relative w-full overflow-hidden py-4 border-t border-border">
+        {/* Left fade gradient */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
+        {/* Right fade gradient */}
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
         <div
           ref={containerRef}
-          className="flex gap-6 overflow-x-auto pb-8 no-scrollbar cursor-grab active:cursor-grabbing select-none"
-          style={{ scrollBehavior: "auto" }}
+          className="no-scrollbar overflow-x-auto flex gap-6 px-4 sm:px-6 select-none cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {SITE_CONFIG.testimonials.map((item) => (
+          {duplicatedTestimonials.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.id}-${index}`}
               className="flex-none w-[280px] sm:w-[350px] bg-background border border-border rounded-2xl p-6 flex flex-col justify-between"
             >
               <div>

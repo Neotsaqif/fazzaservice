@@ -33,8 +33,8 @@ export const Hero: React.FC = () => {
       container.scrollLeft += speed * delta;
 
       const singleSetWidth = container.scrollWidth / 4;
-      if (container.scrollLeft >= singleSetWidth * 2) {
-        container.scrollLeft -= singleSetWidth;
+      if (container.scrollLeft >= singleSetWidth * 3) {
+        container.scrollLeft -= singleSetWidth * 3;
       }
 
       requestAnimationFrame(step);
