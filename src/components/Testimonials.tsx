@@ -12,8 +12,6 @@ export const Testimonials: React.FC = () => {
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const isPausedRef = useRef<boolean>(false);
-  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -27,98 +25,18 @@ export const Testimonials: React.FC = () => {
       const delta = (timestamp - lastTimestampRef.current) / 1000;
       lastTimestampRef.current = timestamp;
 
-      if (!isPausedRef.current) {
-        container.scrollLeft += speed * delta;
+      container.scrollLeft += speed * delta;
 
-        const singleSetWidth = container.scrollWidth / 4;
-        if (container.scrollLeft >= singleSetWidth * 2) {
-          container.scrollLeft -= singleSetWidth;
-        }
+      const singleSetWidth = container.scrollWidth / 4;
+      if (container.scrollLeft >= singleSetWidth * 2) {
+        container.scrollLeft -= singleSetWidth;
       }
 
       requestAnimationFrame(step);
     };
 
     const animId = requestAnimationFrame(step);
-
-    const triggerPause = () => {
-      isPausedRef.current = true;
-      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-      pauseTimerRef.current = setTimeout(() => {
-        isPausedRef.current = false;
-      }, 3000);
-    };
-
-    const handleWheel = () => {
-      triggerPause();
-    };
-
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
-
-    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
-      isDragging = true;
-      startX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      scrollStart = container.scrollLeft;
-      triggerPause();
-    };
-
-    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
-      if (!isDragging) return;
-      const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const dx = startX - x;
-      container.scrollLeft = scrollStart + dx;
-      triggerPause();
-    };
-
-    const handlePointerUp = () => {
-      if (!isDragging) return;
-      isDragging = false;
-      triggerPause();
-    };
-
-    container.addEventListener("wheel", handleWheel, { passive: true });
-    container.addEventListener("mousedown", handlePointerDown as EventListener);
-    window.addEventListener("mousemove", handlePointerMove as EventListener);
-    window.addEventListener("mouseup", handlePointerUp);
-
-    container.addEventListener(
-      "touchstart",
-      handlePointerDown as EventListener,
-      { passive: true },
-    );
-    container.addEventListener(
-      "touchmove",
-      handlePointerMove as EventListener,
-      { passive: true },
-    );
-    container.addEventListener("touchend", handlePointerUp);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-      container.removeEventListener("wheel", handleWheel);
-      container.removeEventListener(
-        "mousedown",
-        handlePointerDown as EventListener,
-      );
-      window.removeEventListener(
-        "mousemove",
-        handlePointerMove as EventListener,
-      );
-      window.removeEventListener("mouseup", handlePointerUp);
-
-      container.removeEventListener(
-        "touchstart",
-        handlePointerDown as EventListener,
-      );
-      container.removeEventListener(
-        "touchmove",
-        handlePointerMove as EventListener,
-      );
-      container.removeEventListener("touchend", handlePointerUp);
-    };
+    return () => cancelAnimationFrame(animId);
   }, []);
 
   return (
@@ -144,8 +62,12 @@ export const Testimonials: React.FC = () => {
 
         <div
           ref={containerRef}
-          className="no-scrollbar overflow-x-auto flex gap-6 px-4 sm:px-6 select-none cursor-grab active:cursor-grabbing"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          tabIndex={-1}
+          onWheel={(e) => e.preventDefault()}
+          onTouchStart={(e) => e.preventDefault()}
+          onMouseDown={(e) => e.preventDefault()}
+          className="no-scrollbar overflow-x-hidden flex gap-6 px-4 sm:px-6 select-none"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none", touchAction: "none" }}
         >
           {duplicatedTestimonials.map((item, index) => (
             <div

@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MessageCircle, CalendarCheck, Home } from "lucide-react";
 import { SITE_CONFIG, getWhatsAppLink } from "../config/site";
 
 export const HowToOrder: React.FC = () => {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Sequence: null (1s) -> 1 (1s) -> 2 (1s) -> 3 (1s) -> repeat
+    const sequence = [null, 1, 2, 3];
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % sequence.length;
+      setActiveStep(sequence[currentIndex]);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const stepIcons = [
     <MessageCircle className="w-5 h-5 text-accent" key="1" />,
     <CalendarCheck className="w-5 h-5 text-accent" key="2" />,
@@ -43,7 +58,11 @@ export const HowToOrder: React.FC = () => {
               }`}
             >
               {/* Numbered badge */}
-              <div className="w-10 h-10 shrink-0 rounded-full bg-sky-100 text-accent font-heading font-bold text-base flex items-center justify-center border border-sky-200">
+              <div
+                className={`w-10 h-10 shrink-0 rounded-full bg-sky-100 text-accent font-heading font-bold text-base flex items-center justify-center border border-sky-200 transition-opacity duration-300 ${
+                  activeStep === step.step ? "animate-pulse ring-4 ring-sky-300 opacity-75" : ""
+                }`}
+              >
                 {step.step}
               </div>
 
