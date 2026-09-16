@@ -75,10 +75,10 @@ export const HowToOrder: React.FC = () => {
 
               {/* Text */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-heading font-semibold text-foreground text-lg mb-1">
+                <h3 className="font-heading font-semibold text-foreground text-lg mb-0 sm:mb-1">
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="hidden sm:block text-sm text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>
