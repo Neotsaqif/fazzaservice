@@ -14,7 +14,7 @@ export const FloatingWA: React.FC = () => {
       {showBubble && (
         <div className="relative flex items-center bg-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-none shadow-[0_0_15px_5px_rgba(0,0,0,0.15)] px-4 py-3 max-w-[220px] animate-bounce">
           <p className="text-sm font-medium text-gray-800 leading-snug pr-2">
-            Chat Admin/CS, kami siap bantu!
+            Pesan Sekarang!
           </p>
           <button
             onClick={() => setShowBubble(false)}
