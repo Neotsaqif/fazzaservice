@@ -5,6 +5,7 @@ import { AreaLayanan } from "./components/AreaLayanan";
 import { ServiceCatalog } from "./components/ServiceCatalog";
 import { WhyUs } from "./components/WhyUs";
 import { HowToOrder } from "./components/HowToOrder";
+import { Testimonials } from "./components/Testimonials";
 import { FAQ } from "./components/FAQ";
 import { ClosingCTA } from "./components/ClosingCTA";
 import { Footer } from "./components/Footer";
@@ -20,6 +21,7 @@ export function App() {
         <ServiceCatalog />
         <WhyUs />
         <HowToOrder />
+        <Testimonials />
         <FAQ />
         <ClosingCTA />
       </main>

@@ -9,6 +9,7 @@ export const Navbar: React.FC = () => {
     { name: "Layanan", href: "#layanan" },
     { name: "Keunggulan", href: "#keunggulan" },
     { name: "Cara Pesan", href: "#cara-pesan" },
+    { name: "Testimoni", href: "#testimoni" },
     { name: "FAQ", href: "#faq" },
   ];
 

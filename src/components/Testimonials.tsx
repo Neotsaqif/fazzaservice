@@ -1,10 +1,106 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Star, User } from "lucide-react";
 import { SITE_CONFIG } from "../config/site";
 
 export const Testimonials: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const directionRef = useRef<number>(1); // 1 = right, -1 = left
+  const isPausedRef = useRef<boolean>(false);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastTimestampRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const speed = 35; // pixels per second
+
+    const step = (timestamp: number) => {
+      if (!lastTimestampRef.current) lastTimestampRef.current = timestamp;
+      const delta = (timestamp - lastTimestampRef.current) / 1000;
+      lastTimestampRef.current = timestamp;
+
+      if (!isPausedRef.current) {
+        container.scrollLeft += directionRef.current * speed * delta;
+
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (container.scrollLeft <= 0) {
+          container.scrollLeft = 0;
+          directionRef.current = 1;
+        } else if (container.scrollLeft >= maxScroll) {
+          container.scrollLeft = maxScroll;
+          directionRef.current = -1;
+        }
+      }
+
+      requestAnimationFrame(step);
+    };
+
+    const animId = requestAnimationFrame(step);
+
+    const triggerPause = () => {
+      isPausedRef.current = true;
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+      pauseTimerRef.current = setTimeout(() => {
+        isPausedRef.current = false;
+      }, 3000);
+    };
+
+    const handleWheel = () => {
+      triggerPause();
+    };
+
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
+      isDragging = true;
+      startX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      scrollStart = container.scrollLeft;
+      triggerPause();
+    };
+
+    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+      const x = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const dx = startX - x;
+      container.scrollLeft = scrollStart + dx;
+      triggerPause();
+    };
+
+    const handlePointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      triggerPause();
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: true });
+    container.addEventListener("mousedown", handlePointerDown as EventListener);
+    window.addEventListener("mousemove", handlePointerMove as EventListener);
+    window.addEventListener("mouseup", handlePointerUp);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+      container.removeEventListener("wheel", handleWheel);
+      container.removeEventListener(
+        "mousedown",
+        handlePointerDown as EventListener,
+      );
+      window.removeEventListener(
+        "mousemove",
+        handlePointerMove as EventListener,
+      );
+      window.removeEventListener("mouseup", handlePointerUp);
+    };
+  }, []);
+
   return (
-    <section className="py-16 sm:py-24 bg-muted border-b border-border">
+    <section
+      id="testimoni"
+      className="py-16 sm:py-24 bg-muted border-b border-border overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-accent mb-2 block">
@@ -15,11 +111,15 @@ export const Testimonials: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          ref={containerRef}
+          className="flex gap-6 overflow-x-auto pb-8 no-scrollbar cursor-grab active:cursor-grabbing select-none"
+          style={{ scrollBehavior: "auto" }}
+        >
           {SITE_CONFIG.testimonials.map((item) => (
             <div
               key={item.id}
-              className="bg-background border border-border rounded-2xl p-6 flex flex-col justify-between"
+              className="flex-none w-[280px] sm:w-[350px] bg-background border border-border rounded-2xl p-6 flex flex-col justify-between"
             >
               <div>
                 {/* Rating stars */}
