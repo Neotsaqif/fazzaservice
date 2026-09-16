@@ -53,12 +53,12 @@ export const Testimonials: React.FC = () => {
         </div>
       </div>
 
-      {/* Carousel - full width with border */}
-      <div className="relative w-full overflow-hidden py-4 border-t border-border">
+      {/* Carousel - constrained container with border */}
+      <div className="relative max-w-7xl mx-auto overflow-hidden py-4 border-t border-border px-4 sm:px-6 lg:px-8">
         {/* Left fade gradient */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-4 sm:left-6 lg:left-8 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
         {/* Right fade gradient */}
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-4 sm:right-6 lg:right-8 top-0 bottom-0 w-4 sm:w-8 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
         <div
           ref={containerRef}
@@ -66,7 +66,7 @@ export const Testimonials: React.FC = () => {
           onWheel={(e) => e.preventDefault()}
           onTouchStart={(e) => e.preventDefault()}
           onMouseDown={(e) => e.preventDefault()}
-          className="no-scrollbar overflow-x-hidden flex gap-6 px-4 sm:px-6 select-none"
+          className="no-scrollbar overflow-x-hidden flex gap-6 select-none"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",

@@ -18,7 +18,9 @@ interface ServiceItem {
   iconName: string;
 }
 
-export const ServiceCatalog: React.FC = () => {
+export const ServiceCatalog: React.FC<{ speed?: number }> = ({
+  speed = 40,
+}) => {
   const allServices: ServiceItem[] = SITE_CONFIG.services;
   const duplicatedServices = [...allServices, ...allServices];
 
@@ -32,7 +34,7 @@ export const ServiceCatalog: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const speed = 35; // pixels per second
+    // speed is provided via props
 
     const step = (timestamp: number) => {
       if (!lastTimestampRef.current) lastTimestampRef.current = timestamp;
@@ -159,11 +161,11 @@ export const ServiceCatalog: React.FC = () => {
       </div>
 
       {/* Ping-Pong Auto-scrolling Carousel */}
-      <div className="relative w-full overflow-hidden py-4">
+      <div className="relative max-w-7xl mx-auto overflow-hidden py-4 border-t border-border px-4 sm:px-6 lg:px-8">
         {/* Left fade gradient */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
         {/* Right fade gradient */}
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
         <div
           ref={containerRef}
