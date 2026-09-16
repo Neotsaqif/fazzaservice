@@ -45,10 +45,10 @@ export const ServiceCatalog: React.FC<{ speed?: number }> = ({
         container.scrollLeft += directionRef.current * speed * delta;
 
         const maxScroll = container.scrollWidth - container.clientWidth;
-        if (container.scrollLeft <= 0) {
+        if (container.scrollLeft <= 1) {
           container.scrollLeft = 0;
           directionRef.current = 1;
-        } else if (container.scrollLeft >= maxScroll) {
+        } else if (container.scrollLeft >= maxScroll - 1) {
           container.scrollLeft = maxScroll;
           directionRef.current = -1;
         }
